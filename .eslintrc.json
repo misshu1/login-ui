@@ -20,7 +20,8 @@
         "project": "jsconfig.json",
         "babelOptions": {
             "presets": ["@babel/preset-react"]
-        }
+        },
+        "requireConfigFile": false
     },
     "plugins": ["react", "react-hooks", "jest"],
     "rules": {

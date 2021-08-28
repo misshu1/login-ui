@@ -18,9 +18,15 @@ body {
     font-family: 'Roboto', sans-serif;
     height: 100%;
     width: 100%;
+    color: #1A1A1A;
     background: url(${bg});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
 }
 `;

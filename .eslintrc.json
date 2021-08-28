@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "env": {
         "browser": true,
         "es6": true,
@@ -17,7 +17,10 @@
         },
         "ecmaVersion": 2020,
         "sourceType": "module",
-        "project": "jsconfig.json"
+        "project": "jsconfig.json",
+        "babelOptions": {
+            "presets": ["@babel/preset-react"]
+        }
     },
     "plugins": ["react", "react-hooks", "jest"],
     "rules": {

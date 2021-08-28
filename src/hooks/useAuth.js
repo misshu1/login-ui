@@ -8,7 +8,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     sendPasswordResetEmail,
-    confirmPasswordReset
+    confirmPasswordReset,
+    updateProfile
 } from 'firebase/auth';
 
 import { ROUTES } from 'components/common';
@@ -41,27 +42,31 @@ function useProvideAuth() {
     };
 
     const login = async (email, password) => {
-        return await signInWithEmailAndPassword(auth, email, password).then(
-            (response) => {
+        return await signInWithEmailAndPassword(auth, email, password)
+            .then((response) => {
                 setUser(response.user);
                 return response.user;
-            }
-        );
+            })
+            .catch((err) => console.log('Error', err.message));
     };
 
-    const register = async (name, email, password) => {
+    const register = async (email, password) => {
         const newUser = await createUserWithEmailAndPassword(
             auth,
             email,
             password
-        );
-
-        await newUser.user.updateProfile({
-            displayName: name
-        });
+        ).catch((err) => console.log('Error', err.message));
 
         setUser(newUser.user);
         return newUser.user;
+    };
+
+    const updateUser = async (firstName, lastName, company, companyRole) => {
+        await updateProfile(auth.currentUser, {
+            displayName: `${firstName} | ${lastName} | ${company} | ${companyRole}`
+        }).catch((err) => console.log('Error', err.message));
+
+        return true;
     };
 
     const logout = async () => {
@@ -77,12 +82,23 @@ function useProvideAuth() {
     };
 
     const sendPasswordReset = async (email) => {
-        await sendPasswordResetEmail(auth, email);
-        return true;
+        let success = false;
+        await sendPasswordResetEmail(auth, email)
+            .then(() => {
+                success = true;
+            })
+            .catch((err) => {
+                success = false;
+                console.log('Error', err.message);
+            });
+
+        return success;
     };
 
     const confirmResetPassword = async (code, password) => {
-        await confirmPasswordReset(auth, code, password);
+        await confirmPasswordReset(auth, code, password).catch((err) =>
+            console.log('Error', err.message)
+        );
         return true;
     };
 
@@ -105,7 +121,8 @@ function useProvideAuth() {
         logout,
         sendPasswordReset,
         confirmResetPassword,
-        isUserLoggedIn
+        isUserLoggedIn,
+        updateUser
     };
 }
 

@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Button } from './style';
 
-export function PrimaryBtn({ background, margin, children }) {
+export function PrimaryBtn({ background, margin, children, ...props }) {
     return (
-        <Button background={background} margin={margin}>
+        <Button background={background} margin={margin} {...props}>
             {children}
         </Button>
     );

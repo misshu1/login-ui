@@ -25,7 +25,12 @@ export const Button = styled.button`
     margin-right: ${({ margin }) =>
         margin?.right ? `${margin.right}px` : undefined};
 
-    &&:hover {
+    :not(:disabled):hover {
         background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+    }
+
+    :disabled {
+        filter: grayscale(1);
+        cursor: default;
     }
 `;

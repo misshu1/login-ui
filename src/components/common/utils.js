@@ -1,5 +1,10 @@
 export const ROUTES = {
     root: '/',
     login: '/login',
-    register: '/register'
+    register: '/register',
+    updateUser: '/update-user',
+    terms: '/terms',
+    verifyEmail: '/verify-email',
+    resetPassword: '/reset',
+    resetSuccess: '/reset-success'
 };

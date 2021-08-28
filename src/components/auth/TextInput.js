@@ -162,13 +162,17 @@ export const Error = styled.p`
 `;
 
 export const Show = styled.p`
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     color: #131ba3;
     position: absolute;
     right: 16px;
     top: 50%;
     margin: 0;
+    padding: 2px 8px;
+    background-color: #e8e9fc;
+    border-radius: 2px;
     transform: translateY(-50%);
     cursor: pointer;
+    text-transform: capitalize;
 `;
